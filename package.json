@@ -1,0 +1,25 @@
+{
+  "name": "pawantara-a-ucp1-20250140119",
+  "version": "1.0.0",
+  "description": "Website & REST API Toko Sembako Ariesta - UCP 1 Pemrograman Aplikasi Web",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "express",
+    "ejs",
+    "toko-sembako"
+  ],
+  "author": "Fazilatun Nisa Muslimah - 20250140119",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

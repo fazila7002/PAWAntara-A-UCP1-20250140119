@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const webRoutes = require('./routes/web');
+const apiRoutes = require('./routes/api');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // route halaman website
 app.use('/', webRoutes);
+
+// route REST API
+app.use('/api', apiRoutes);
 
 // halaman tidak ditemukan
 app.use((req, res) => {

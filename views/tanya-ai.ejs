@@ -1,0 +1,84 @@
+<%- include('partials/head', { title: 'Tanya AI' }) %>
+<%- include('partials/navbar', { active: 'tanya-ai' }) %>
+
+<main>
+
+  <section class="section" aria-labelledby="judul-chat">
+    <h1 id="judul-chat" class="section-judul">Tanya AI</h1>
+    <p class="section-subjudul">
+      Tanyakan jam buka, ongkir, cara pembayaran, atau ketersediaan stok tanpa
+      menunggu balasan WhatsApp.
+    </p>
+
+    <div class="chat-wrapper">
+
+      <article class="chat-panel" aria-label="Percakapan dengan asisten toko">
+        <header class="chat-header">
+          <span class="chat-avatar" aria-hidden="true">&#129302;</span>
+          <div>
+            <strong>Asisten Toko Ariesta</strong>
+            <small>Biasanya membalas dalam beberapa detik</small>
+          </div>
+        </header>
+
+        <div class="chat-body" id="daftarPesan">
+          <div class="bubble bubble-ai">
+            <p>
+              Halo! Saya asisten Toko Sembako Ariesta. Ada yang bisa saya bantu
+              soal harga, stok, atau pengiriman?
+            </p>
+          </div>
+
+          <div class="bubble bubble-user">
+            <p>Toko buka jam berapa ya?</p>
+          </div>
+
+          <div class="bubble bubble-ai">
+            <p>Toko kami buka setiap hari jam 07.00 - 20.00 WIB.</p>
+          </div>
+        </div>
+
+        <!-- form chat: label terhubung ke input demi aksesibilitas.
+             Logika balasan diproses di backend pada Sprint 2. -->
+        <form class="chat-form" action="/tanya-ai" method="GET">
+          <label for="pertanyaan" class="label-visually-hidden">
+            Tulis pertanyaan untuk asisten toko
+          </label>
+          <input
+            type="text"
+            id="pertanyaan"
+            name="pertanyaan"
+            placeholder="Tulis pertanyaanmu di sini..."
+            autocomplete="off"
+            aria-describedby="catatan-chat">
+          <button type="submit" class="tombol tombol-utama">Kirim</button>
+        </form>
+
+        <p id="catatan-chat" class="chat-catatan">
+          Catatan: pada Sprint 1 halaman ini baru menampilkan antarmuka chat.
+          Balasan otomatis dari server dikerjakan pada Sprint 2.
+        </p>
+      </article>
+
+      <aside class="chat-samping" aria-labelledby="judul-contoh">
+        <h2 id="judul-contoh">Contoh Pertanyaan</h2>
+        <ul>
+          <li>Jam buka toko hari Minggu?</li>
+          <li>Ada ongkir ke daerah Kasihan?</li>
+          <li>Bisa bayar pakai transfer atau QRIS?</li>
+          <li>Beras 5 kg stoknya masih ada?</li>
+        </ul>
+
+        <h2>Butuh cepat?</h2>
+        <p>
+          Hubungi langsung WhatsApp <strong>0812-3456-7890</strong> pada jam
+          operasional toko.
+        </p>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>

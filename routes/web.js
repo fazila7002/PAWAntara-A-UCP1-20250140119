@@ -60,4 +60,9 @@ router.get('/produk/:id', (req, res) => {
   res.render('detail', { produk, produkLain });
 });
 
+// GET /tanya-ai -> tampilan chat + form (logika balasan dikerjakan di Sprint 2)
+router.get('/tanya-ai', (req, res) => {
+  res.render('tanya-ai');
+});
+
 module.exports = router;

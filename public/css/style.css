@@ -306,6 +306,279 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   FORM FILTER / PENCARIAN
+   -------------------------------------------------------------------------- */
+
+.form-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius);
+  background-color: var(--putih);
+  border: 1px solid var(--gandum);
+}
+
+.form-baris {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1 1 220px;
+}
+
+.form-baris label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--coklat);
+}
+
+.form-baris input,
+.form-baris select {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--pasir);
+  border-radius: 10px;
+  background-color: var(--krem);
+  color: var(--hutan);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.form-baris input:focus,
+.form-baris select:focus {
+  outline: 2px solid var(--olive);
+  outline-offset: 1px;
+}
+
+.form-aksi {
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tautan-reset {
+  color: var(--karamel);
+  font-size: 0.9rem;
+}
+
+.info-hasil {
+  margin: 0 0 1.25rem;
+  color: var(--olive);
+  font-size: 0.92rem;
+}
+
+/* --------------------------------------------------------------------------
+   KARTU PRODUK
+   -------------------------------------------------------------------------- */
+
+.grid-produk {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.kartu-produk {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-color: var(--putih);
+  border: 1px solid var(--gandum);
+  box-shadow: var(--bayangan);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.kartu-produk:hover {
+  transform: translateY(-4px);
+  border-color: var(--olive);
+}
+
+.produk-gambar {
+  display: grid;
+  place-items: center;
+  height: 140px;
+  font-size: 3.5rem;
+  background-color: var(--sage);
+}
+
+.produk-isi {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1rem 1.15rem 1.25rem;
+}
+
+.label-kategori {
+  align-self: flex-start;
+  padding: 0.15rem 0.6rem;
+  margin-bottom: 0.5rem;
+  border-radius: 999px;
+  background-color: var(--zaitun);
+  color: var(--hutan);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.produk-nama {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: var(--hutan);
+}
+
+.produk-harga {
+  margin: 0 0 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--coklat);
+}
+
+.produk-satuan {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--pasir);
+}
+
+.stok {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.stok-ada {
+  color: var(--olive);
+}
+
+.stok-habis {
+  color: #a13b1f;
+}
+
+.tombol-kecil {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 0.45rem 1rem;
+  font-size: 0.88rem;
+}
+
+.tautan-selengkapnya {
+  margin-top: 1.25rem;
+  text-align: right;
+}
+
+.tautan-selengkapnya a {
+  color: var(--coklat);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   HALAMAN DETAIL PRODUK
+   -------------------------------------------------------------------------- */
+
+.breadcrumb {
+  max-width: var(--lebar-konten);
+  margin: 1.5rem auto 0;
+  padding: 0 1.25rem;
+  font-size: 0.88rem;
+  color: var(--pasir);
+}
+
+.breadcrumb a {
+  color: var(--coklat);
+}
+
+.detail-produk {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.detail-gambar {
+  display: grid;
+  place-items: center;
+  height: 280px;
+  border-radius: var(--radius);
+  background-color: var(--sage);
+  font-size: 7rem;
+  border: 1px solid var(--gandum);
+}
+
+.detail-info h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+  color: var(--kopi);
+}
+
+.detail-harga {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--coklat);
+}
+
+.detail-deskripsi {
+  margin: 0 0 1.5rem;
+  max-width: 60ch;
+  color: var(--lumut);
+}
+
+.detail-spesifikasi {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 1.5rem;
+  margin: 0 0 1.75rem;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background-color: var(--putih);
+  border: 1px solid var(--gandum);
+}
+
+.detail-spesifikasi dt {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--pasir);
+}
+
+.detail-spesifikasi dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   KOTAK KOSONG / HALAMAN PESAN
+   -------------------------------------------------------------------------- */
+
+.kotak-kosong {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  border-radius: var(--radius);
+  background-color: var(--putih);
+  border: 1px dashed var(--pasir);
+}
+
+.kosong-ikon {
+  font-size: 3rem;
+}
+
+.kotak-kosong h1,
+.kotak-kosong h2 {
+  margin: 0.75rem 0 0.5rem;
+  color: var(--kopi);
+}
+
+.kotak-kosong p {
+  margin: 0 auto 1.5rem;
+  max-width: 52ch;
+  color: var(--lumut);
+}
+
+/* --------------------------------------------------------------------------
    FOOTER
    -------------------------------------------------------------------------- */
 

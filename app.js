@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const webRoutes = require('./routes/web');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,8 +19,12 @@ app.use((req, res, next) => {
 // static file (css, js, gambar)
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-  res.render('beranda');
+// route halaman website
+app.use('/', webRoutes);
+
+// halaman tidak ditemukan
+app.use((req, res) => {
+  res.status(404).render('404', { urlDicari: req.originalUrl });
 });
 
 app.listen(PORT, () => {

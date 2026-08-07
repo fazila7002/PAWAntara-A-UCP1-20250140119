@@ -1,0 +1,21 @@
+<%- include('partials/head', { title: 'Halaman Tidak Ditemukan' }) %>
+<%- include('partials/navbar', { active: '' }) %>
+
+<main>
+  <section class="section" aria-labelledby="judul-404">
+    <div class="kotak-kosong">
+      <span class="kosong-ikon" aria-hidden="true">&#128269;</span>
+      <h1 id="judul-404">Halaman tidak ditemukan</h1>
+      <p>
+        Alamat <strong><%= urlDicari %></strong> tidak tersedia di website
+        Toko Sembako Ariesta.
+      </p>
+      <div class="hero-tombol" style="justify-content: center;">
+        <a href="/" class="tombol tombol-utama">Kembali ke Beranda</a>
+        <a href="/produk" class="tombol tombol-garis">Lihat Produk</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,81 @@
+<%- include('partials/head', { title: produk.name }) %>
+<%- include('partials/navbar', { active: 'produk' }) %>
+
+<main>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Beranda</a> &rsaquo;
+    <a href="/produk">Produk</a> &rsaquo;
+    <span aria-current="page"><%= produk.name %></span>
+  </nav>
+
+  <section class="section detail-produk" aria-labelledby="judul-detail">
+    <div class="detail-gambar" aria-hidden="true"><%= produk.icon %></div>
+
+    <div class="detail-info">
+      <span class="label-kategori"><%= produk.category %></span>
+      <h1 id="judul-detail"><%= produk.name %></h1>
+
+      <p class="detail-harga">
+        Rp <%= produk.price.toLocaleString('id-ID') %>
+        <span class="produk-satuan">/ <%= produk.unit %></span>
+      </p>
+
+      <p class="detail-deskripsi"><%= produk.description %></p>
+
+      <dl class="detail-spesifikasi">
+        <div>
+          <dt>Kode Produk</dt>
+          <dd>#<%= produk.id %></dd>
+        </div>
+        <div>
+          <dt>Kategori</dt>
+          <dd><%= produk.category %></dd>
+        </div>
+        <div>
+          <dt>Satuan</dt>
+          <dd>Per <%= produk.unit %></dd>
+        </div>
+        <div>
+          <dt>Status Stok</dt>
+          <dd>
+            <% if (produk.stock > 0) { %>
+              <span class="stok stok-ada">Tersedia <%= produk.stock %> <%= produk.unit %></span>
+            <% } else { %>
+              <span class="stok stok-habis">Sedang kosong</span>
+            <% } %>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="hero-tombol">
+        <a href="/tanya-ai" class="tombol tombol-utama">Tanya Ketersediaan</a>
+        <a href="/produk" class="tombol tombol-garis">Kembali ke Daftar</a>
+      </div>
+    </div>
+  </section>
+
+  <% if (produkLain.length > 0) { %>
+    <section class="section" aria-labelledby="judul-serupa">
+      <h2 id="judul-serupa" class="section-judul">Produk Sekategori</h2>
+      <p class="section-subjudul">Pilihan lain dari kategori <%= produk.category %>.</p>
+
+      <div class="grid-produk">
+        <% produkLain.forEach(function (item) { %>
+          <article class="kartu-produk">
+            <div class="produk-gambar" aria-hidden="true"><%= item.icon %></div>
+            <div class="produk-isi">
+              <span class="label-kategori"><%= item.category %></span>
+              <h3 class="produk-nama"><%= item.name %></h3>
+              <p class="produk-harga">Rp <%= item.price.toLocaleString('id-ID') %></p>
+              <a href="/produk/<%= item.id %>" class="tombol tombol-garis tombol-kecil">Lihat Detail</a>
+            </div>
+          </article>
+        <% }); %>
+      </div>
+    </section>
+  <% } %>
+
+</main>
+
+<%- include('partials/footer') %>

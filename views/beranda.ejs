@@ -58,6 +58,33 @@
     </div>
   </section>
 
+  <!-- PREVIEW PRODUK -->
+  <section class="section" aria-labelledby="judul-unggulan">
+    <h2 id="judul-unggulan" class="section-judul">Paling Sering Dibeli</h2>
+    <p class="section-subjudul">Tiga produk yang stoknya paling cepat berputar minggu ini.</p>
+
+    <div class="grid-produk">
+      <% produkUnggulan.forEach(function (item) { %>
+        <article class="kartu-produk">
+          <div class="produk-gambar" aria-hidden="true"><%= item.icon %></div>
+          <div class="produk-isi">
+            <span class="label-kategori"><%= item.category %></span>
+            <h3 class="produk-nama"><%= item.name %></h3>
+            <p class="produk-harga">
+              Rp <%= item.price.toLocaleString('id-ID') %>
+              <span class="produk-satuan">/ <%= item.unit %></span>
+            </p>
+            <a href="/produk/<%= item.id %>" class="tombol tombol-garis tombol-kecil">Lihat Detail</a>
+          </div>
+        </article>
+      <% }); %>
+    </div>
+
+    <p class="tautan-selengkapnya">
+      <a href="/produk">Lihat semua produk &rarr;</a>
+    </p>
+  </section>
+
 </main>
 
 <%- include('partials/footer') %>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Toko Sembako Ariesta - beras, minyak goreng, gula, telur, dan kebutuhan pokok rumah tangga.">
+  <title><%= title %> | Toko Sembako Ariesta</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // palet warna toko (earthy) dipakai lewat class tailwind, mis. bg-hutan / text-karamel
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kopi: '#582f0e',
+            coklat: '#7f4f24',
+            karamel: '#936639',
+            pasir: '#a68a64',
+            gandum: '#b6ad90',
+            sage: '#c2c5aa',
+            zaitun: '#a4ac86',
+            olive: '#656d4a',
+            lumut: '#414833',
+            hutan: '#333d29',
+            krem: '#f7f4ec'
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-krem text-hutan">

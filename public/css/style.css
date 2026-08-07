@@ -1,0 +1,343 @@
+/* ==========================================================================
+   Toko Sembako Ariesta - stylesheet utama
+   Palet warna earthy (coklat -> olive) dipakai lewat CSS variable di bawah.
+   ========================================================================== */
+
+:root {
+  --kopi: #582f0e;
+  --coklat: #7f4f24;
+  --karamel: #936639;
+  --pasir: #a68a64;
+  --gandum: #b6ad90;
+  --sage: #c2c5aa;
+  --zaitun: #a4ac86;
+  --olive: #656d4a;
+  --lumut: #414833;
+  --hutan: #333d29;
+  --krem: #f7f4ec;
+  --putih: #fffdf8;
+
+  --radius: 14px;
+  --bayangan: 0 6px 18px rgba(51, 61, 41, 0.08);
+  --lebar-konten: 1140px;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.65;
+  color: var(--hutan);
+  background-color: var(--krem);
+}
+
+/* --------------------------------------------------------------------------
+   NAVBAR (tampilan desktop)
+   -------------------------------------------------------------------------- */
+
+.navbar-container {
+  max-width: var(--lebar-konten);
+  margin: 0 auto;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--krem);
+}
+
+.brand-logo {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--olive);
+  color: var(--krem);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.navbar-brand strong {
+  display: block;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.navbar-brand small {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--zaitun);
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu a {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--sage);
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar-menu a:hover,
+.navbar-menu a:focus-visible {
+  background-color: var(--lumut);
+  color: var(--krem);
+}
+
+.navbar-menu .menu-aktif {
+  background-color: var(--olive);
+  color: var(--krem);
+  font-weight: 600;
+}
+
+.navbar-menu .menu-api {
+  border: 1px dashed var(--olive);
+}
+
+/* tombol hamburger disembunyikan dulu, baru muncul di breakpoint mobile */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--olive);
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.garis-hamburger {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--krem);
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   HERO
+   -------------------------------------------------------------------------- */
+
+.hero {
+  max-width: var(--lebar-konten);
+  margin: 2.5rem auto 0;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+}
+
+.hero-teks {
+  flex: 1 1 60%;
+}
+
+.hero-label {
+  display: inline-block;
+  margin: 0 0 0.75rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background-color: var(--sage);
+  color: var(--lumut);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.hero-teks h1 {
+  margin: 0 0 1rem;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  color: var(--kopi);
+}
+
+.hero-deskripsi {
+  margin: 0 0 1.5rem;
+  max-width: 46ch;
+  color: var(--lumut);
+}
+
+.hero-tombol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-kartu {
+  flex: 1 1 40%;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background-color: var(--putih);
+  border: 1px solid var(--gandum);
+  box-shadow: var(--bayangan);
+}
+
+.hero-kartu h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  color: var(--coklat);
+}
+
+.hero-kartu ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--lumut);
+}
+
+.hero-kartu li {
+  margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   TOMBOL
+   -------------------------------------------------------------------------- */
+
+.tombol {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tombol-utama {
+  background-color: var(--olive);
+  color: var(--krem);
+}
+
+.tombol-utama:hover {
+  background-color: var(--lumut);
+}
+
+.tombol-garis {
+  border-color: var(--karamel);
+  color: var(--coklat);
+}
+
+.tombol-garis:hover {
+  background-color: var(--karamel);
+  color: var(--krem);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION UMUM
+   -------------------------------------------------------------------------- */
+
+.section {
+  max-width: var(--lebar-konten);
+  margin: 3.5rem auto 0;
+  padding: 0 1.25rem;
+}
+
+.section-judul {
+  margin: 0 0 0.35rem;
+  font-size: 1.6rem;
+  color: var(--kopi);
+}
+
+.section-subjudul {
+  margin: 0 0 1.5rem;
+  color: var(--karamel);
+}
+
+/* --------------------------------------------------------------------------
+   KARTU KATEGORI
+   -------------------------------------------------------------------------- */
+
+.grid-kategori {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.kartu-kategori {
+  display: block;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background-color: var(--putih);
+  border: 1px solid var(--gandum);
+  text-decoration: none;
+  color: var(--hutan);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.kartu-kategori:hover {
+  transform: translateY(-4px);
+  border-color: var(--olive);
+}
+
+.kategori-ikon {
+  font-size: 1.8rem;
+}
+
+.kartu-kategori h3 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1.05rem;
+  color: var(--coklat);
+}
+
+.kartu-kategori p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--olive);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+
+.footer-container {
+  max-width: var(--lebar-konten);
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.footer-judul {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: var(--krem);
+}
+
+.footer-container p,
+.footer-container address {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+  font-style: normal;
+}
+
+.footer-bawah {
+  border-top: 1px solid var(--lumut);
+  padding: 1rem 1.25rem;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.footer-bawah p {
+  margin: 0;
+}

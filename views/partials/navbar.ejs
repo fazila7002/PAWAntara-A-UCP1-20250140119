@@ -1,0 +1,33 @@
+<header class="bg-hutan text-krem shadow-md sticky top-0 z-50">
+  <nav class="navbar-container" aria-label="Navigasi utama">
+
+    <a href="/" class="navbar-brand">
+      <span class="brand-logo" aria-hidden="true">TSA</span>
+      <span>
+        <strong>Toko Sembako Ariesta</strong>
+        <small>Kebutuhan pokok rumah tangga</small>
+      </span>
+    </a>
+
+    <!-- tombol hamburger, hanya tampil di layar mobile -->
+    <button
+      type="button"
+      id="tombolHamburger"
+      class="navbar-toggle"
+      aria-label="Buka menu navigasi"
+      aria-expanded="false"
+      aria-controls="menuUtama">
+      <span class="garis-hamburger"></span>
+      <span class="garis-hamburger"></span>
+      <span class="garis-hamburger"></span>
+    </button>
+
+    <ul id="menuUtama" class="navbar-menu">
+      <li><a href="/" class="<%= active === 'beranda' ? 'menu-aktif' : '' %>">Beranda</a></li>
+      <li><a href="/produk" class="<%= active === 'produk' ? 'menu-aktif' : '' %>">Produk</a></li>
+      <li><a href="/tanya-ai" class="<%= active === 'tanya-ai' ? 'menu-aktif' : '' %>">Tanya AI</a></li>
+      <li><a href="/api/products" class="menu-api">Lihat API</a></li>
+    </ul>
+
+  </nav>
+</header>

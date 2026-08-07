@@ -1,0 +1,63 @@
+<%- include('partials/head', { title: 'Beranda' }) %>
+<%- include('partials/navbar', { active: 'beranda' }) %>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="judul-hero">
+    <div class="hero-teks">
+      <p class="hero-label">UMKM Sembako &amp; Kebutuhan Rumah Tangga</p>
+      <h1 id="judul-hero">Belanja sembako tanpa harus tanya harga lewat WhatsApp.</h1>
+      <p class="hero-deskripsi">
+        Stok dan harga di Toko Sembako Ariesta selalu diperbarui langsung oleh Ibu Aries.
+        Cek dulu di sini sebelum belanja, atau tanya apa saja lewat fitur Tanya AI.
+      </p>
+      <div class="hero-tombol">
+        <a href="/produk" class="tombol tombol-utama">Lihat Daftar Produk</a>
+        <a href="/tanya-ai" class="tombol tombol-garis">Tanya AI</a>
+      </div>
+    </div>
+
+    <aside class="hero-kartu" aria-label="Informasi singkat toko">
+      <h2>Kenapa belanja di sini?</h2>
+      <ul>
+        <li><strong>Harga selalu update</strong> &mdash; dikelola sendiri oleh pemilik toko.</li>
+        <li><strong>Stok transparan</strong> &mdash; ketahuan habis atau tidak sebelum datang.</li>
+        <li><strong>Bisa diantar</strong> &mdash; gratis ongkir area Bantul kota.</li>
+        <li><strong>Buka tiap hari</strong> &mdash; 07.00 sampai 20.00 WIB.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <!-- KATEGORI -->
+  <section class="section" aria-labelledby="judul-kategori">
+    <h2 id="judul-kategori" class="section-judul">Kategori Belanja</h2>
+    <p class="section-subjudul">Pilih kategori untuk langsung menyaring daftar produk.</p>
+
+    <div class="grid-kategori">
+      <a href="/produk?kategori=Beras" class="kartu-kategori">
+        <span class="kategori-ikon" aria-hidden="true">&#127834;</span>
+        <h3>Beras</h3>
+        <p>Beras premium sampai medium</p>
+      </a>
+      <a href="/produk?kategori=Minyak" class="kartu-kategori">
+        <span class="kategori-ikon" aria-hidden="true">&#129371;</span>
+        <h3>Minyak</h3>
+        <p>Minyak goreng kemasan &amp; curah</p>
+      </a>
+      <a href="/produk?kategori=Gula" class="kartu-kategori">
+        <span class="kategori-ikon" aria-hidden="true">&#129474;</span>
+        <h3>Gula</h3>
+        <p>Gula pasir dan gula merah</p>
+      </a>
+      <a href="/produk?kategori=Telur" class="kartu-kategori">
+        <span class="kategori-ikon" aria-hidden="true">&#129370;</span>
+        <h3>Telur</h3>
+        <p>Telur ayam negeri per kilogram</p>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>

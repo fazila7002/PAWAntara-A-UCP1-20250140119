@@ -614,3 +614,136 @@ body {
 .footer-bawah p {
   margin: 0;
 }
+
+/* ==========================================================================
+   RESPONSIVE - 2 breakpoint (tablet & mobile)
+   ========================================================================== */
+
+/* ---------- TABLET: maksimal 900px ---------- */
+@media (max-width: 900px) {
+
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-teks h1 {
+    font-size: 2.1rem;
+  }
+
+  .grid-kategori {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-produk {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detail-produk {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-gambar {
+    height: 200px;
+    font-size: 5rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- MOBILE: maksimal 640px ---------- */
+@media (max-width: 640px) {
+
+  /* navbar berubah jadi menu hamburger */
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+    width: 100%;
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--lumut);
+  }
+
+  /* class ini ditambahkan/dihapus oleh JS saat tombol hamburger diklik */
+  .navbar-menu.menu-terbuka {
+    display: flex;
+  }
+
+  .navbar-menu a {
+    border-radius: 10px;
+    padding: 0.65rem 0.9rem;
+  }
+
+  .brand-logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .navbar-brand strong {
+    font-size: 0.95rem;
+  }
+
+  /* animasi kecil: garis hamburger jadi tanda silang saat menu terbuka */
+  .hamburger-aktif .garis-hamburger:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger-aktif .garis-hamburger:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-aktif .garis-hamburger:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .garis-hamburger {
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .hero {
+    margin-top: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .hero-teks h1 {
+    font-size: 1.75rem;
+  }
+
+  .section {
+    margin-top: 2.5rem;
+  }
+
+  .grid-kategori,
+  .grid-produk {
+    grid-template-columns: 1fr;
+  }
+
+  .form-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-aksi {
+    justify-content: space-between;
+  }
+
+  .detail-spesifikasi {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .tautan-selengkapnya {
+    text-align: left;
+  }
+}

@@ -9,8 +9,11 @@
       Harga dan stok di bawah ini diperbarui langsung oleh pemilik toko.
     </p>
 
-    <!-- form pencarian: diproses di server lewat query string ?search= -->
-    <form class="form-filter" action="/produk" method="GET" role="search">
+    <!-- Form tetap punya action/method sebagai cadangan kalau JS mati.
+         Saat JS aktif, /js/produk.js mengambil alih: filter dikirim ke
+         GET /api/products lewat Fetch API dan hasilnya digambar ulang di DOM
+         tanpa reload. Penyaringannya sendiri tetap dikerjakan di server. -->
+    <form class="form-filter" id="formFilter" action="/produk" method="GET" role="search">
       <div class="form-baris">
         <label for="search">Cari produk</label>
         <input
@@ -35,52 +38,60 @@
 
       <div class="form-baris form-aksi">
         <button type="submit" class="tombol tombol-utama">Terapkan Filter</button>
-        <a href="/produk" class="tautan-reset">Reset</a>
+        <a href="/produk" class="tautan-reset" id="tautanReset">Reset</a>
       </div>
     </form>
 
-    <p class="info-hasil">
+    <p class="info-hasil" id="infoHasil" aria-live="polite">
       Menampilkan <strong><%= produk.length %></strong> produk
       <% if (kategoriAktif) { %> pada kategori "<strong><%= kategoriAktif %></strong>"<% } %>
       <% if (kataPencarian) { %> dengan kata kunci "<strong><%= kataPencarian %></strong>"<% } %>.
     </p>
 
-    <% if (produk.length === 0) { %>
-      <div class="kotak-kosong">
-        <h2>Produk tidak ditemukan</h2>
-        <p>Coba ganti kata kunci atau pilih kategori lain.</p>
-        <a href="/produk" class="tombol tombol-garis">Tampilkan semua produk</a>
-      </div>
-    <% } else { %>
-      <div class="grid-produk">
-        <% produk.forEach(function (item) { %>
-          <article class="kartu-produk">
-            <div class="produk-gambar" aria-hidden="true"><%= item.icon %></div>
+    <div id="hasilProduk">
+      <% if (produk.length === 0) { %>
+        <div class="kotak-kosong">
+          <h2>Produk tidak ditemukan</h2>
+          <p>Coba ganti kata kunci atau pilih kategori lain.</p>
+          <a href="/produk" class="tombol tombol-garis">Tampilkan semua produk</a>
+        </div>
+      <% } else { %>
+        <div class="grid-produk">
+          <% produk.forEach(function (item) { %>
+            <article class="kartu-produk">
+              <div class="produk-gambar" aria-hidden="true"><%= item.icon %></div>
 
-            <div class="produk-isi">
-              <span class="label-kategori"><%= item.category %></span>
-              <h2 class="produk-nama"><%= item.name %></h2>
-              <p class="produk-harga">
-                Rp <%= item.price.toLocaleString('id-ID') %>
-                <span class="produk-satuan">/ <%= item.unit %></span>
-              </p>
+              <div class="produk-isi">
+                <span class="label-kategori"><%= item.category %></span>
+                <h2 class="produk-nama"><%= item.name %></h2>
+                <p class="produk-harga">
+                  Rp <%= item.price.toLocaleString('id-ID') %>
+                  <span class="produk-satuan">/ <%= item.unit %></span>
+                </p>
 
-              <% if (item.stock > 0) { %>
-                <p class="stok stok-ada">Stok tersedia: <%= item.stock %> <%= item.unit %></p>
-              <% } else { %>
-                <p class="stok stok-habis">Stok habis</p>
-              <% } %>
+                <% if (item.stock > 0) { %>
+                  <p class="stok stok-ada">Stok tersedia: <%= item.stock %> <%= item.unit %></p>
+                <% } else { %>
+                  <p class="stok stok-habis">Stok habis</p>
+                <% } %>
 
-              <a href="/produk/<%= item.id %>" class="tombol tombol-garis tombol-kecil">
-                Lihat Detail
-              </a>
-            </div>
-          </article>
-        <% }); %>
-      </div>
-    <% } %>
+                <a href="/produk/<%= item.id %>" class="tombol tombol-garis tombol-kecil">
+                  Lihat Detail
+                </a>
+              </div>
+            </article>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
+
+    <p class="sumber-data">
+      Data pada halaman ini dibaca dari endpoint
+      <a href="/api/products"><code>GET /api/products</code></a> &mdash; sumber
+      yang sama dengan yang diubah lewat dashboard admin.
+    </p>
   </section>
 
 </main>
 
-<%- include('partials/footer') %>
+<%- include('partials/footer', { scriptHalaman: '/js/produk.js' }) %>

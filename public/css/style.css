@@ -1461,3 +1461,28 @@ body {
     animation: none;
   }
 }
+
+/* catatan sumber data di bawah daftar produk */
+.sumber-data {
+  margin-top: 1.5rem;
+  font-size: 0.83rem;
+  color: var(--pasir);
+}
+
+.sumber-data code {
+  padding: 0.1rem 0.35rem;
+  border-radius: 5px;
+  background-color: var(--putih);
+  border: 1px solid var(--gandum);
+  color: var(--coklat);
+}
+
+.sumber-data a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sumber-data a:hover code {
+  border-color: var(--olive);
+  color: var(--olive);
+}

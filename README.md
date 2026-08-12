@@ -62,6 +62,9 @@ karena semua nilainya punya default di kode.
 - **dotenv** — konfigurasi opsional lewat `.env`
 - **Tailwind CDN** — dipakai untuk konfigurasi palet warna
 - **CSS custom** (`public/css/style.css`) — layout Flexbox/Grid + media query
+- **Plus Jakarta Sans** (Google Fonts) — dengan fallback ke font sistem
+- **Ikon SVG inline** — digambar sendiri sebagai sprite `<symbol>`, tanpa
+  library ikon eksternal, sehingga tetap tampil saat offline
 - **Vanilla JavaScript** — Fetch API `async/await`, manipulasi DOM, event handling
 - **nodemon** — auto-restart server saat development
 - Data produk & akun admin disimpan sebagai **array in-memory** (`data/store.js`)
@@ -123,7 +126,9 @@ PAWAntara-A-UCP1-20250140119/
 │   └── api.js                   # route REST API
 ├── views/
 │   ├── partials/
-│   │   ├── head.ejs             # <head>, tailwind config & link CSS
+│   │   ├── head.ejs             # <head>, font, palet warna & link CSS
+│   │   ├── ikon-sprite.ejs      # kumpulan ikon SVG (<symbol>) untuk seluruh situs
+│   │   ├── ikon.ejs             # pemanggil ikon, memetakan kategori ke ikon
 │   │   ├── navbar.ejs           # navbar + tombol hamburger + status login
 │   │   └── footer.ejs           # footer + script JS
 │   ├── beranda.ejs
@@ -137,6 +142,7 @@ PAWAntara-A-UCP1-20250140119/
 └── public/                      # static file, disajikan lewat express.static
     ├── css/style.css
     └── js/
+        ├── ikon.js              # pemanggil ikon SVG untuk kartu yang dirender JS
         ├── main.js              # menu hamburger + tombol logout
         ├── login.js             # submit login lewat Fetch API
         ├── dashboard.js         # CRUD produk lewat Fetch API
@@ -300,22 +306,45 @@ method, endpoint, status code, dan lama prosesnya:
 
 ### Palet Warna
 
-Website memakai palet **earthy** dari coklat tanah ke hijau olive, dipilih supaya
-terasa hangat, natural, dan dekat dengan citra toko sembako/bahan pokok.
+Website memakai palet **netral hangat**: dasar putih tulang, teks abu gelap,
+dan satu warna aksen coklat yang dipakai seperlunya saja. Warna sengaja
+ditahan supaya isi halaman (nama produk, harga, stok) yang menonjol, bukan
+latarnya — kesan yang dituju bersih dan tenang, bukan ramai.
 
-| Warna | Hex | Dipakai untuk |
+| Peran | Hex | Dipakai untuk |
 | --- | --- | --- |
-| Kopi | `#582f0e` | Judul utama (heading) |
-| Coklat | `#7f4f24` | Harga produk, sub-judul |
-| Karamel | `#936639` | Tombol garis, teks pendukung |
-| Pasir | `#a68a64` | Border input, teks sekunder |
-| Gandum | `#b6ad90` | Border kartu |
-| Sage | `#c2c5aa` | Latar gambar produk, bubble chat AI |
-| Zaitun | `#a4ac86` | Label kategori |
-| Olive | `#656d4a` | Tombol utama, menu aktif |
-| Lumut | `#414833` | Header chat, hover navbar |
-| Hutan | `#333d29` | Navbar, footer, warna teks |
-| Krem | `#f7f4ec` | Latar belakang halaman |
+| Latar | `#fdfcfa` | Latar belakang halaman |
+| Blok | `#f7f4ef` | Latar area gambar produk, kepala tabel, hover |
+| Kartu | `#ffffff` | Permukaan kartu, navbar, footer |
+| Garis | `#e8e4de` | Border kartu, pemisah baris |
+| Garis kuat | `#d8d2c8` | Border input dan tombol garis |
+| Teks | `#221f1b` | Judul dan teks utama |
+| Lembut | `#736e66` | Paragraf pendukung, label form |
+| Samar | `#a49c90` | Keterangan kecil, ikon produk |
+| Aksen | `#6b4f35` | Tombol utama, menu aktif, tautan |
+| Aksen gelap | `#4f3a26` | Warna hover tombol utama |
+| Aksen muda | `#f4efe8` | Latar menu aktif, ikon kategori, bubble sukses |
+| Bata | `#a33b2a` | Status stok habis dan pesan error |
+
+### Tipografi
+
+Judul dan isi memakai **Plus Jakarta Sans** (400/500/600/700) dari Google
+Fonts, dengan `letter-spacing` sedikit dirapatkan pada judul. Kalau tidak ada
+koneksi internet, font otomatis turun ke Segoe UI / font sistem lewat
+`font-family` fallback — tampilan tetap rapi, hanya kurang khas.
+
+### Ikon
+
+Ikon digambar sendiri sebagai SVG garis dan disimpan sekali sebagai sprite
+`<symbol>` di `views/partials/ikon-sprite.ejs`, lalu dipanggil ulang dengan
+`<use href="#ikon-...">`. Karena inline, ikon tidak butuh koneksi internet dan
+warnanya mengikuti warna teks lewat `currentColor`.
+
+Ikon pada kartu produk **ditentukan dari kategorinya** (beras, minyak, gula,
+telur, tepung, dan ikon kotak untuk kategori lain), jadi produk baru yang
+ditambahkan lewat dashboard langsung mendapat ikon yang sesuai tanpa perlu
+diisi manual. Pemetaannya ada di `views/partials/ikon.ejs` untuk render server
+dan `public/js/ikon.js` untuk kartu yang digambar di browser.
 
 ### Struktur Semantic HTML5
 
@@ -341,7 +370,7 @@ bagian bawah halaman.
   lengkap produk (harga, deskripsi, daftar spesifikasi), ditambah daftar produk
   lain dari kategori yang sama.
 - **Tanya AI** — antarmuka chat dengan bubble percakapan (bubble pelanggan di
-  kanan berwarna coklat, bubble asisten di kiri berwarna sage). Pertanyaan
+  kanan berwarna aksen coklat, bubble asisten di kiri putih bergaris). Pertanyaan
   dikirim ke `POST /api/chat` lewat Fetch API, dengan indikator titik-titik
   "sedang mengetik" selama menunggu balasan. Panel samping berisi tombol contoh
   pertanyaan yang bisa langsung diklik.
@@ -415,6 +444,7 @@ Sprint2-add product mutation endpoints protected by auth guard
 Sprint2-add admin dashboard with fetch-based product CRUD
 Sprint2-add dummy chatbot endpoint & dynamic chat UI
 Sprint2-fetch produk list from API & refresh README
+Sprint2-refine UI with neutral palette, custom font & svg icons
 ```
 
 ---

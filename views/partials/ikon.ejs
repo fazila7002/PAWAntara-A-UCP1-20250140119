@@ -1,0 +1,30 @@
+<%
+  /*
+   * Pemanggil ikon dari sprite. Dipanggil lewat include dengan salah satu
+   * parameter berikut:
+   *
+   *   kategori - nama kategori produk, dipetakan otomatis ke ikon yang sesuai
+   *   nama     - id ikon langsung, tanpa awalan "ikon-" (mis. 'cari')
+   *   kelas    - class CSS tambahan, mis. 'ikon-kecil' atau 'ikon-besar'
+   */
+
+  const petaKategori = {
+    beras: 'beras',
+    minyak: 'minyak',
+    gula: 'gula',
+    telur: 'telur',
+    tepung: 'tepung'
+  };
+
+  let idIkon;
+
+  if (typeof nama !== 'undefined' && nama) {
+    idIkon = nama;
+  } else {
+    const kunci = String(typeof kategori !== 'undefined' ? kategori : '').toLowerCase();
+    // kategori di luar daftar (mis. "Lainnya") memakai ikon kotak
+    idIkon = petaKategori[kunci] || 'kotak';
+  }
+
+  const kelasTambahan = typeof kelas !== 'undefined' && kelas ? ' ' + kelas : '';
+%><svg class="ikon<%= kelasTambahan %>" aria-hidden="true" focusable="false"><use href="#ikon-<%= idIkon %>"></use></svg>

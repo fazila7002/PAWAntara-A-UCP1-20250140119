@@ -10,7 +10,9 @@
   </nav>
 
   <section class="section detail-produk" aria-labelledby="judul-detail">
-    <div class="detail-gambar" aria-hidden="true"><%= produk.icon %></div>
+    <div class="detail-gambar">
+      <%- include('partials/ikon', { kategori: produk.category }) %>
+    </div>
 
     <div class="detail-info">
       <span class="label-kategori"><%= produk.category %></span>
@@ -63,7 +65,9 @@
       <div class="grid-produk">
         <% produkLain.forEach(function (item) { %>
           <article class="kartu-produk">
-            <div class="produk-gambar" aria-hidden="true"><%= item.icon %></div>
+            <div class="produk-gambar">
+              <%- include('partials/ikon', { kategori: item.category, kelas: 'ikon-besar' }) %>
+            </div>
             <div class="produk-isi">
               <span class="label-kategori"><%= item.category %></span>
               <h3 class="produk-nama"><%= item.name %></h3>

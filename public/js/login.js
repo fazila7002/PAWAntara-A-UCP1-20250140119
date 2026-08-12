@@ -13,8 +13,16 @@ document.addEventListener('DOMContentLoaded', function () {
   const kotakPesan = document.getElementById('pesanLogin');
   const tombolLogin = document.getElementById('tombolLogin');
 
+  /** Mencegah teks dari server dieksekusi sebagai HTML saat dimasukkan ke DOM. */
+  function amankan(teks) {
+    const kotak = document.createElement('div');
+    kotak.textContent = teks === undefined || teks === null ? '' : String(teks);
+    return kotak.innerHTML;
+  }
+
   function tampilkanPesan(teks, jenis) {
-    kotakPesan.textContent = teks;
+    const ikon = jenis === 'sukses' ? 'cek' : 'peringatan';
+    kotakPesan.innerHTML = ikonNama(ikon, 'ikon-kecil') + '<span>' + amankan(teks) + '</span>';
     kotakPesan.className = 'auth-pesan auth-pesan-' + jenis;
     kotakPesan.hidden = false;
   }

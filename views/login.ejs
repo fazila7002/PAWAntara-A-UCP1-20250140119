@@ -7,14 +7,17 @@
 
     <article class="auth-kartu">
       <header class="auth-kepala">
-        <span class="auth-ikon" aria-hidden="true">&#128274;</span>
+        <span class="auth-ikon">
+          <%- include('partials/ikon', { nama: 'kunci', kelas: 'ikon-sedang' }) %>
+        </span>
         <h1 id="judul-login">Login Admin</h1>
         <p>Masuk dulu untuk mengelola stok dan harga produk.</p>
       </header>
 
       <% if (perluLogin) { %>
         <p class="auth-peringatan" role="status">
-          Halaman dashboard hanya bisa dibuka setelah login.
+          <%- include('partials/ikon', { nama: 'info', kelas: 'ikon-kecil' }) %>
+          <span>Halaman dashboard hanya bisa dibuka setelah login.</span>
         </p>
       <% } %>
 

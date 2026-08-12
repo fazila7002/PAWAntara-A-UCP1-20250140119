@@ -4,13 +4,15 @@
 <main>
   <section class="section" aria-labelledby="judul-kosong">
     <div class="kotak-kosong">
-      <span class="kosong-ikon" aria-hidden="true">&#128533;</span>
+      <span class="kosong-ikon">
+        <%- include('partials/ikon', { nama: 'peringatan', kelas: 'ikon-sedang' }) %>
+      </span>
       <h1 id="judul-kosong">Produk tidak ditemukan</h1>
       <p>
         Produk dengan kode <strong>#<%= idDicari %></strong> tidak ada di daftar
         Toko Sembako Ariesta. Mungkin kodenya salah ketik atau produknya sudah tidak dijual.
       </p>
-      <div class="hero-tombol" style="justify-content: center;">
+      <div class="hero-tombol">
         <a href="/produk" class="tombol tombol-utama">Lihat Semua Produk</a>
         <a href="/" class="tombol tombol-garis">Kembali ke Beranda</a>
       </div>

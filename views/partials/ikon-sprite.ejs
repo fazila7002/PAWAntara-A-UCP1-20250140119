@@ -1,0 +1,160 @@
+<%#
+  Sprite ikon SVG.
+
+  Semua ikon digambar sendiri sebagai <symbol> dan disisipkan sekali di awal
+  halaman, lalu dipanggil ulang lewat <use href="#ikon-...">. Karena inline,
+  ikon tetap tampil walaupun tidak ada koneksi internet, dan warnanya bisa
+  ikut warna teks lewat `currentColor`.
+
+  Dipakai dari EJS lewat partials/ikon.ejs, dan dari JavaScript lewat
+  public/js/ikon.js untuk kartu yang digambar di sisi browser.
+%>
+<svg xmlns="http://www.w3.org/2000/svg" class="sprite-ikon" aria-hidden="true" focusable="false">
+  <%# ---------- ikon kategori produk ---------- %>
+
+  <symbol id="ikon-beras" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8.2 7.6h7.6l1.3 8.9a2.4 2.4 0 0 1-2.4 2.8H9.3a2.4 2.4 0 0 1-2.4-2.8z"/>
+    <path d="M9.6 7.6 8.7 5.5a.8.8 0 0 1 .8-1.1h5a.8.8 0 0 1 .8 1.1l-.9 2.1"/>
+    <path d="M10.4 12.4h3.2"/>
+  </symbol>
+
+  <symbol id="ikon-minyak" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10.1 3.8h3.8v2.9l1.9 2.6a3 3 0 0 1 .6 1.8v7.1a2 2 0 0 1-2 2H9.6a2 2 0 0 1-2-2v-7.1a3 3 0 0 1 .6-1.8l1.9-2.6z"/>
+    <path d="M7.6 13h8.8"/>
+  </symbol>
+
+  <symbol id="ikon-gula" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6.6" y="8" width="10.8" height="11.5" rx="2"/>
+    <path d="M8.6 8V6.3a1.7 1.7 0 0 1 1.7-1.7h3.4a1.7 1.7 0 0 1 1.7 1.7V8"/>
+    <path d="M9.6 12.4h4.8"/>
+  </symbol>
+
+  <symbol id="ikon-telur" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4c3 0 5.5 4.1 5.5 7.9 0 3.5-2.4 6.3-5.5 6.3s-5.5-2.8-5.5-6.3C6.5 8.1 9 4 12 4Z"/>
+  </symbol>
+
+  <symbol id="ikon-tepung" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7.1 8.6h9.8v9.3a2 2 0 0 1-2 2H9.1a2 2 0 0 1-2-2z"/>
+    <path d="M7.1 8.6 8.9 4.8h6.2l1.8 3.8"/>
+    <path d="M10.2 4.8v3.8M13.8 4.8v3.8"/>
+  </symbol>
+
+  <symbol id="ikon-kotak" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.9 8.2 12 4.6l7.1 3.6v7.6L12 19.4l-7.1-3.6z"/>
+    <path d="M4.9 8.2 12 11.8l7.1-3.6M12 11.8v7.6"/>
+  </symbol>
+
+  <%# ---------- ikon antarmuka ---------- %>
+
+  <symbol id="ikon-cari" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="10.9" cy="10.9" r="6.1"/>
+    <path d="m19.4 19.4-4.2-4.2"/>
+  </symbol>
+
+  <symbol id="ikon-kunci" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="5.2" y="10.4" width="13.6" height="9.4" rx="2"/>
+    <path d="M8.6 10.4V7.9a3.4 3.4 0 0 1 6.8 0v2.5"/>
+  </symbol>
+
+  <symbol id="ikon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19.8 12.2c0 3.7-3.5 6.7-7.8 6.7-.9 0-1.7-.1-2.5-.3l-4.7 1.6 1.3-3.3a6.3 6.3 0 0 1-1.9-4.7c0-3.7 3.5-6.7 7.8-6.7s7.8 3 7.8 6.7Z"/>
+  </symbol>
+
+  <symbol id="ikon-toko" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.4 9.8V19a1 1 0 0 0 1 1h13.2a1 1 0 0 0 1-1V9.8"/>
+    <path d="M3.2 9.8 4.8 5.3a1 1 0 0 1 .94-.66h12.52a1 1 0 0 1 .94.66l1.6 4.5"/>
+    <path d="M9.6 20v-5.1h4.8V20"/>
+  </symbol>
+
+  <symbol id="ikon-truk" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.6 6.4h9.6v9.2H3.6z"/>
+    <path d="M13.2 9.6h3.5l3.1 3.1v2.9h-6.6z"/>
+    <circle cx="7.3" cy="17.6" r="1.9"/>
+    <circle cx="16.6" cy="17.6" r="1.9"/>
+  </symbol>
+
+  <symbol id="ikon-jam" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="7.8"/>
+    <path d="M12 7.5V12l2.9 1.8"/>
+  </symbol>
+
+  <symbol id="ikon-kartu" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.6" y="6.2" width="16.8" height="11.6" rx="2"/>
+    <path d="M3.6 10.3h16.8"/>
+    <path d="M6.8 14.4h3.2"/>
+  </symbol>
+
+  <symbol id="ikon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20.3s6.1-5.3 6.1-9.7A6.1 6.1 0 0 0 5.9 10.6c0 4.4 6.1 9.7 6.1 9.7Z"/>
+    <circle cx="12" cy="10.5" r="2.3"/>
+  </symbol>
+
+  <symbol id="ikon-panah" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.8 12h13.4M12.6 6.4 18.2 12l-5.6 5.6"/>
+  </symbol>
+
+  <symbol id="ikon-pensil" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.6 19.4h3.1L18.3 8.8a1.7 1.7 0 0 0 0-2.4l-.7-.7a1.7 1.7 0 0 0-2.4 0L4.6 16.3z"/>
+    <path d="m14.4 7.2 2.4 2.4"/>
+  </symbol>
+
+  <symbol id="ikon-sampah" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5.4 7h13.2"/>
+    <path d="M10 7V5.6a1.4 1.4 0 0 1 1.4-1.4h1.2A1.4 1.4 0 0 1 14 5.6V7"/>
+    <path d="m7 7 .8 11.1a2 2 0 0 0 2 1.9h4.4a2 2 0 0 0 2-1.9L17 7"/>
+    <path d="M10.4 10.6v5.8M13.6 10.6v5.8"/>
+  </symbol>
+
+  <symbol id="ikon-keluar" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13.8 7.4V5.8A1.8 1.8 0 0 0 12 4H6.2a1.8 1.8 0 0 0-1.8 1.8v12.4A1.8 1.8 0 0 0 6.2 20H12a1.8 1.8 0 0 0 1.8-1.8v-1.6"/>
+    <path d="M9.4 12h10.2M16.4 8.8 19.6 12l-3.2 3.2"/>
+  </symbol>
+
+  <symbol id="ikon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 5.6v12.8M5.6 12h12.8"/>
+  </symbol>
+
+  <symbol id="ikon-cek" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m5.2 12.4 4.4 4.4 9.2-9.6"/>
+  </symbol>
+
+  <symbol id="ikon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="7.8"/>
+    <path d="M12 11.2v4.6M12 8.3v.2"/>
+  </symbol>
+
+  <symbol id="ikon-peringatan" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4.6 3.4 19.2h17.2z"/>
+    <path d="M12 10v4M12 16.6v.2"/>
+  </symbol>
+
+  <symbol id="ikon-kisi" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4.2" y="4.2" width="6.6" height="6.6" rx="1.4"/>
+    <rect x="13.2" y="4.2" width="6.6" height="6.6" rx="1.4"/>
+    <rect x="4.2" y="13.2" width="6.6" height="6.6" rx="1.4"/>
+    <rect x="13.2" y="13.2" width="6.6" height="6.6" rx="1.4"/>
+  </symbol>
+</svg>

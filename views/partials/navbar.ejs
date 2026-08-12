@@ -1,4 +1,4 @@
-<header class="bg-hutan text-krem shadow-md sticky top-0 z-50">
+<header class="navbar">
   <nav class="navbar-container" aria-label="Navigasi utama">
 
     <a href="/" class="navbar-brand">
@@ -34,7 +34,10 @@
             <%= userLogin.nama %>
           </span>
           <!-- logout memanggil POST /api/logout lewat fetch, ditangani /js/main.js -->
-          <button type="button" id="tombolLogout" class="tombol-logout">Logout</button>
+          <button type="button" id="tombolLogout" class="tombol-logout">
+            <%- include('ikon', { nama: 'keluar', kelas: 'ikon-kecil' }) %>
+            Logout
+          </button>
         </li>
       <% } else { %>
         <li><a href="/login" class="<%= active === 'login' ? 'menu-aktif' : '' %>">Login Admin</a></li>

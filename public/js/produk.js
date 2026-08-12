@@ -41,9 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
         ? `<p class="stok stok-ada">Stok tersedia: ${item.stock} ${amankan(item.unit)}</p>`
         : '<p class="stok stok-habis">Stok habis</p>';
 
+    // ikon diambil dari kategori lewat helper di /js/ikon.js, supaya kartu
+    // hasil render JavaScript tampil sama persis dengan hasil render EJS
     return `
       <article class="kartu-produk">
-        <div class="produk-gambar" aria-hidden="true">${amankan(item.icon)}</div>
+        <div class="produk-gambar">${ikonKategori(item.category, 'ikon-besar')}</div>
         <div class="produk-isi">
           <span class="label-kategori">${amankan(item.category)}</span>
           <h2 class="produk-nama">${amankan(item.name)}</h2>
@@ -62,9 +64,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (daftar.length === 0) {
       hasilProduk.innerHTML = `
         <div class="kotak-kosong">
+          <span class="kosong-ikon">${ikonNama('cari', 'ikon-sedang')}</span>
           <h2>Produk tidak ditemukan</h2>
           <p>Coba ganti kata kunci atau pilih kategori lain.</p>
-          <a href="/produk" class="tombol tombol-garis">Tampilkan semua produk</a>
+          <div class="hero-tombol">
+            <a href="/produk" class="tombol tombol-garis">Tampilkan semua produk</a>
+          </div>
         </div>
       `;
     } else {

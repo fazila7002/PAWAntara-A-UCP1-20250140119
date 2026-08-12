@@ -6,24 +6,31 @@
   <meta name="description" content="Toko Sembako Ariesta - beras, minyak goreng, gula, telur, dan kebutuhan pokok rumah tangga.">
   <title><%= title %> | Toko Sembako Ariesta</title>
 
+  <!-- Plus Jakarta Sans. Kalau tidak ada koneksi internet, otomatis turun ke
+       font sistem lewat font-family fallback di style.css - tampilan tetap rapi. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // palet warna toko (earthy) dipakai lewat class tailwind, mis. bg-hutan / text-karamel
+    // palet netral hangat: dasar putih tulang, teks abu gelap,
+    // satu aksen coklat yang dipakai seperlunya saja
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            kopi: '#582f0e',
-            coklat: '#7f4f24',
-            karamel: '#936639',
-            pasir: '#a68a64',
-            gandum: '#b6ad90',
-            sage: '#c2c5aa',
-            zaitun: '#a4ac86',
-            olive: '#656d4a',
-            lumut: '#414833',
-            hutan: '#333d29',
-            krem: '#f7f4ec'
+            latar: '#fdfcfa',
+            blok: '#f7f4ef',
+            kartu: '#ffffff',
+            garis: '#e8e4de',
+            teks: '#221f1b',
+            lembut: '#736e66',
+            samar: '#a49c90',
+            aksen: '#6b4f35',
+            'aksen-gelap': '#4f3a26',
+            'aksen-muda': '#f4efe8',
+            bata: '#a33b2a'
           }
         }
       }
@@ -31,4 +38,5 @@
   </script>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="bg-krem text-hutan">
+<body class="bg-latar text-teks">
+<%- include('ikon-sprite') %>

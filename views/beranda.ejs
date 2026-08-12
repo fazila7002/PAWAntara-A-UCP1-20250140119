@@ -21,10 +21,22 @@
     <aside class="hero-kartu" aria-label="Informasi singkat toko">
       <h2>Kenapa belanja di sini?</h2>
       <ul>
-        <li><strong>Harga selalu update</strong> &mdash; dikelola sendiri oleh pemilik toko.</li>
-        <li><strong>Stok transparan</strong> &mdash; ketahuan habis atau tidak sebelum datang.</li>
-        <li><strong>Bisa diantar</strong> &mdash; gratis ongkir area Bantul kota.</li>
-        <li><strong>Buka tiap hari</strong> &mdash; 07.00 sampai 20.00 WIB.</li>
+        <li>
+          <%- include('partials/ikon', { nama: 'kartu', kelas: 'ikon-kecil' }) %>
+          <span><strong>Harga selalu update</strong> dikelola sendiri oleh pemilik toko.</span>
+        </li>
+        <li>
+          <%- include('partials/ikon', { nama: 'kotak', kelas: 'ikon-kecil' }) %>
+          <span><strong>Stok transparan</strong> ketahuan habis atau tidak sebelum datang.</span>
+        </li>
+        <li>
+          <%- include('partials/ikon', { nama: 'truk', kelas: 'ikon-kecil' }) %>
+          <span><strong>Bisa diantar</strong> gratis ongkir area Bantul kota.</span>
+        </li>
+        <li>
+          <%- include('partials/ikon', { nama: 'jam', kelas: 'ikon-kecil' }) %>
+          <span><strong>Buka tiap hari</strong> 07.00 sampai 20.00 WIB.</span>
+        </li>
       </ul>
     </aside>
   </section>
@@ -36,22 +48,30 @@
 
     <div class="grid-kategori">
       <a href="/produk?kategori=Beras" class="kartu-kategori">
-        <span class="kategori-ikon" aria-hidden="true">&#127834;</span>
+        <span class="kategori-ikon">
+          <%- include('partials/ikon', { kategori: 'Beras', kelas: 'ikon-sedang' }) %>
+        </span>
         <h3>Beras</h3>
         <p>Beras premium sampai medium</p>
       </a>
       <a href="/produk?kategori=Minyak" class="kartu-kategori">
-        <span class="kategori-ikon" aria-hidden="true">&#129371;</span>
+        <span class="kategori-ikon">
+          <%- include('partials/ikon', { kategori: 'Minyak', kelas: 'ikon-sedang' }) %>
+        </span>
         <h3>Minyak</h3>
         <p>Minyak goreng kemasan &amp; curah</p>
       </a>
       <a href="/produk?kategori=Gula" class="kartu-kategori">
-        <span class="kategori-ikon" aria-hidden="true">&#129474;</span>
+        <span class="kategori-ikon">
+          <%- include('partials/ikon', { kategori: 'Gula', kelas: 'ikon-sedang' }) %>
+        </span>
         <h3>Gula</h3>
         <p>Gula pasir dan gula merah</p>
       </a>
       <a href="/produk?kategori=Telur" class="kartu-kategori">
-        <span class="kategori-ikon" aria-hidden="true">&#129370;</span>
+        <span class="kategori-ikon">
+          <%- include('partials/ikon', { kategori: 'Telur', kelas: 'ikon-sedang' }) %>
+        </span>
         <h3>Telur</h3>
         <p>Telur ayam negeri per kilogram</p>
       </a>
@@ -66,7 +86,9 @@
     <div class="grid-produk">
       <% produkUnggulan.forEach(function (item) { %>
         <article class="kartu-produk">
-          <div class="produk-gambar" aria-hidden="true"><%= item.icon %></div>
+          <div class="produk-gambar">
+            <%- include('partials/ikon', { kategori: item.category, kelas: 'ikon-besar' }) %>
+          </div>
           <div class="produk-isi">
             <span class="label-kategori"><%= item.category %></span>
             <h3 class="produk-nama"><%= item.name %></h3>
@@ -81,7 +103,10 @@
     </div>
 
     <p class="tautan-selengkapnya">
-      <a href="/produk">Lihat semua produk &rarr;</a>
+      <a href="/produk">
+        Lihat semua produk
+        <%- include('partials/ikon', { nama: 'panah', kelas: 'ikon-kecil' }) %>
+      </a>
     </p>
   </section>
 

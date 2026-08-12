@@ -14,7 +14,9 @@
 
       <article class="chat-panel" aria-label="Percakapan dengan asisten toko">
         <header class="chat-header">
-          <span class="chat-avatar" aria-hidden="true">&#129302;</span>
+          <span class="chat-avatar">
+            <%- include('partials/ikon', { nama: 'chat' }) %>
+          </span>
           <div>
             <strong>Asisten Toko Ariesta</strong>
             <small>Biasanya membalas dalam beberapa detik</small>
@@ -65,10 +67,8 @@
         </ul>
 
         <h2>Butuh cepat?</h2>
-        <p>
-          Hubungi langsung WhatsApp <strong>0812-3456-7890</strong> pada jam
-          operasional toko.
-        </p>
+        <p>Hubungi WhatsApp pada jam operasional toko.</p>
+        <p class="chat-kontak">0812-3456-7890</p>
       </aside>
 
     </div>

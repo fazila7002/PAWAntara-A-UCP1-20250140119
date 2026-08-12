@@ -14,7 +14,8 @@
         </p>
       </div>
       <a href="/produk" class="tombol tombol-garis tombol-kecil" target="_blank" rel="noopener">
-        Lihat halaman publik &rarr;
+        Lihat halaman publik
+        <%- include('partials/ikon', { nama: 'panah', kelas: 'ikon-kecil' }) %>
       </a>
     </header>
 
@@ -22,19 +23,19 @@
     <div class="statistik-grid">
       <article class="kartu-statistik">
         <span class="statistik-label">Jenis Produk</span>
-        <strong class="statistik-angka" id="statJumlah">-</strong>
+        <strong class="statistik-angka" id="statJumlah">&ndash;</strong>
       </article>
       <article class="kartu-statistik">
         <span class="statistik-label">Total Stok</span>
-        <strong class="statistik-angka" id="statStok">-</strong>
+        <strong class="statistik-angka" id="statStok">&ndash;</strong>
       </article>
       <article class="kartu-statistik kartu-statistik-waspada">
         <span class="statistik-label">Stok Habis</span>
-        <strong class="statistik-angka" id="statHabis">-</strong>
+        <strong class="statistik-angka" id="statHabis">&ndash;</strong>
       </article>
       <article class="kartu-statistik">
         <span class="statistik-label">Nilai Persediaan</span>
-        <strong class="statistik-angka" id="statNilai">-</strong>
+        <strong class="statistik-angka" id="statNilai">&ndash;</strong>
       </article>
     </div>
 
@@ -68,12 +69,16 @@
                 name="kategori"
                 list="daftarKategoriTersedia"
                 placeholder="Beras, Minyak, ..."
+                aria-describedby="bantuan-kategori"
                 required>
               <datalist id="daftarKategoriTersedia">
                 <% daftarKategori.forEach(function (kategori) { %>
                   <option value="<%= kategori %>"></option>
                 <% }); %>
               </datalist>
+              <small id="bantuan-kategori" class="form-bantuan">
+                Kategori menentukan ikon yang tampil di kartu produk.
+              </small>
             </div>
 
             <div class="form-baris">
@@ -95,11 +100,6 @@
           </div>
 
           <div class="form-baris">
-            <label for="ikon">Ikon (emoji)</label>
-            <input type="text" id="ikon" name="ikon" maxlength="4" placeholder="&#127834;">
-          </div>
-
-          <div class="form-baris">
             <label for="deskripsi">Deskripsi</label>
             <textarea id="deskripsi" name="deskripsi" rows="3"
               placeholder="Keterangan singkat produk untuk halaman detail."></textarea>
@@ -110,7 +110,7 @@
               Simpan Produk
             </button>
             <button type="button" id="tombolBatal" class="tombol tombol-garis" hidden>
-              Batal Edit
+              Batal
             </button>
           </div>
         </form>

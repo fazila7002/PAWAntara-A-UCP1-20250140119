@@ -37,7 +37,10 @@
       </div>
 
       <div class="form-baris form-aksi">
-        <button type="submit" class="tombol tombol-utama">Terapkan Filter</button>
+        <button type="submit" class="tombol tombol-utama">
+          <%- include('partials/ikon', { nama: 'cari', kelas: 'ikon-kecil' }) %>
+          Terapkan
+        </button>
         <a href="/produk" class="tautan-reset" id="tautanReset">Reset</a>
       </div>
     </form>
@@ -51,15 +54,22 @@
     <div id="hasilProduk">
       <% if (produk.length === 0) { %>
         <div class="kotak-kosong">
+          <span class="kosong-ikon">
+            <%- include('partials/ikon', { nama: 'cari', kelas: 'ikon-sedang' }) %>
+          </span>
           <h2>Produk tidak ditemukan</h2>
           <p>Coba ganti kata kunci atau pilih kategori lain.</p>
-          <a href="/produk" class="tombol tombol-garis">Tampilkan semua produk</a>
+          <div class="hero-tombol">
+            <a href="/produk" class="tombol tombol-garis">Tampilkan semua produk</a>
+          </div>
         </div>
       <% } else { %>
         <div class="grid-produk">
           <% produk.forEach(function (item) { %>
             <article class="kartu-produk">
-              <div class="produk-gambar" aria-hidden="true"><%= item.icon %></div>
+              <div class="produk-gambar">
+                <%- include('partials/ikon', { kategori: item.category, kelas: 'ikon-besar' }) %>
+              </div>
 
               <div class="produk-isi">
                 <span class="label-kategori"><%= item.category %></span>

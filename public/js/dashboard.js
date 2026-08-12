@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const inputSatuan = document.getElementById('satuan');
   const inputHarga = document.getElementById('harga');
   const inputStok = document.getElementById('stok');
-  const inputIkon = document.getElementById('ikon');
   const inputDeskripsi = document.getElementById('deskripsi');
 
   const judulForm = document.getElementById('judul-form');
@@ -42,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function tampilkanPesan(teks, jenis) {
-    kotakPesan.textContent = teks;
+    const ikon = jenis === 'sukses' ? 'cek' : 'peringatan';
+    kotakPesan.innerHTML = ikonNama(ikon, 'ikon-kecil') + '<span>' + amankan(teks) + '</span>';
     kotakPesan.className = 'auth-pesan auth-pesan-' + jenis;
     kotakPesan.hidden = false;
 
@@ -99,17 +99,27 @@ document.addEventListener('DOMContentLoaded', function () {
         return `
           <tr>
             <td>
-              <span class="tabel-ikon" aria-hidden="true">${amankan(produk.icon)}</span>
-              <span class="tabel-nama">${amankan(produk.name)}</span>
-              <small class="tabel-id">id: ${produk.id}</small>
+              <div class="sel-produk">
+                <span class="tabel-ikon">${ikonKategori(produk.category)}</span>
+                <span>
+                  <span class="tabel-nama">${amankan(produk.name)}</span>
+                  <small class="tabel-id">id: ${produk.id}</small>
+                </span>
+              </div>
             </td>
             <td>${amankan(produk.category)}</td>
             <td>${rupiah(produk.price)}</td>
             <td>${statusStok}</td>
             <td>
               <div class="tabel-aksi">
-                <button type="button" class="tombol-aksi tombol-ubah" data-id="${produk.id}">Ubah</button>
-                <button type="button" class="tombol-aksi tombol-hapus" data-id="${produk.id}">Hapus</button>
+                <button type="button" class="tombol-aksi tombol-ubah" data-id="${produk.id}"
+                  aria-label="Ubah ${amankan(produk.name)}" title="Ubah">
+                  ${ikonNama('pensil', 'ikon-kecil')}
+                </button>
+                <button type="button" class="tombol-aksi tombol-hapus" data-id="${produk.id}"
+                  aria-label="Hapus ${amankan(produk.name)}" title="Hapus">
+                  ${ikonNama('sampah', 'ikon-kecil')}
+                </button>
               </div>
             </td>
           </tr>
@@ -157,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function () {
     inputSatuan.value = produk.unit;
     inputHarga.value = produk.price;
     inputStok.value = produk.stock;
-    inputIkon.value = produk.icon;
     inputDeskripsi.value = produk.description;
 
     judulForm.textContent = 'Ubah Produk #' + produk.id;
@@ -196,7 +205,6 @@ document.addEventListener('DOMContentLoaded', function () {
       price: Number(harga),
       stock: Number(stok),
       unit: inputSatuan.value.trim() || 'pcs',
-      icon: inputIkon.value.trim() || '\u{1F6D2}',
       description: inputDeskripsi.value.trim()
     };
 

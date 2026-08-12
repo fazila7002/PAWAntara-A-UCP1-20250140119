@@ -1,5 +1,6 @@
 const express = require('express');
 const store = require('../data/store');
+const { alihkanKalauSudahLogin } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -47,6 +48,15 @@ router.get('/produk/:id', (req, res) => {
 // GET /tanya-ai -> halaman chat, balasan diambil dari POST /api/chat
 router.get('/tanya-ai', (req, res) => {
   res.render('tanya-ai');
+});
+
+// GET /login -> form login admin/kasir
+router.get('/login', alihkanKalauSudahLogin, (req, res) => {
+  // ?alasan=wajib-login muncul saat pengunjung mencoba membuka /dashboard
+  // tanpa sesi login, lalu dialihkan ke halaman ini oleh middleware auth
+  res.render('login', {
+    perluLogin: req.query.alasan === 'wajib-login'
+  });
 });
 
 module.exports = router;

@@ -1,0 +1,71 @@
+<%- include('partials/head', { title: 'Login Admin' }) %>
+<%- include('partials/navbar', { active: 'login' }) %>
+
+<main>
+
+  <section class="section auth-section" aria-labelledby="judul-login">
+
+    <article class="auth-kartu">
+      <header class="auth-kepala">
+        <span class="auth-ikon" aria-hidden="true">&#128274;</span>
+        <h1 id="judul-login">Login Admin</h1>
+        <p>Masuk dulu untuk mengelola stok dan harga produk.</p>
+      </header>
+
+      <% if (perluLogin) { %>
+        <p class="auth-peringatan" role="status">
+          Halaman dashboard hanya bisa dibuka setelah login.
+        </p>
+      <% } %>
+
+      <!-- form dikirim lewat Fetch API di /js/login.js, bukan form action biasa -->
+      <form id="formLogin" class="auth-form" novalidate>
+
+        <div class="form-baris">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Masukkan username"
+            autocomplete="username"
+            aria-describedby="bantuan-username"
+            required>
+          <small id="bantuan-username" class="form-bantuan">
+            Akun dibuat oleh pemilik toko, tidak ada pendaftaran mandiri.
+          </small>
+        </div>
+
+        <div class="form-baris">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Masukkan password"
+            autocomplete="current-password"
+            required>
+        </div>
+
+        <!-- kotak pesan diisi oleh JavaScript, aria-live agar dibacakan screen reader -->
+        <p id="pesanLogin" class="auth-pesan" role="alert" aria-live="polite" hidden></p>
+
+        <button type="submit" id="tombolLogin" class="tombol tombol-utama tombol-blok">
+          Masuk
+        </button>
+      </form>
+
+      <footer class="auth-kaki">
+        <p>
+          Pengunjung biasa tidak perlu login &mdash;
+          <a href="/produk">lihat daftar produk</a> atau
+          <a href="/tanya-ai">tanya asisten toko</a>.
+        </p>
+      </footer>
+    </article>
+
+  </section>
+
+</main>
+
+<%- include('partials/footer', { scriptHalaman: '/js/login.js' }) %>

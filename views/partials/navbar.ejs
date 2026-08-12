@@ -26,6 +26,20 @@
       <li><a href="/" class="<%= active === 'beranda' ? 'menu-aktif' : '' %>">Beranda</a></li>
       <li><a href="/produk" class="<%= active === 'produk' ? 'menu-aktif' : '' %>">Produk</a></li>
       <li><a href="/tanya-ai" class="<%= active === 'tanya-ai' ? 'menu-aktif' : '' %>">Tanya AI</a></li>
+
+      <% if (userLogin) { %>
+        <li><a href="/dashboard" class="<%= active === 'dashboard' ? 'menu-aktif' : '' %>">Dashboard</a></li>
+        <li class="menu-akun">
+          <span class="menu-nama-user" title="Sedang login sebagai <%= userLogin.username %>">
+            <%= userLogin.nama %>
+          </span>
+          <!-- logout memanggil POST /api/logout lewat fetch, ditangani /js/main.js -->
+          <button type="button" id="tombolLogout" class="tombol-logout">Logout</button>
+        </li>
+      <% } else { %>
+        <li><a href="/login" class="<%= active === 'login' ? 'menu-aktif' : '' %>">Login Admin</a></li>
+      <% } %>
+
       <li><a href="/api/products" class="menu-api">Lihat API</a></li>
     </ul>
 

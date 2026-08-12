@@ -23,5 +23,9 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <%# script tambahan khusus halaman tertentu, mis. dashboard atau chat %>
+  <% if (typeof scriptHalaman !== 'undefined' && scriptHalaman) { %>
+    <script src="<%= scriptHalaman %>"></script>
+  <% } %>
 </body>
 </html>

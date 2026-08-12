@@ -1,9 +1,11 @@
 /**
- * Script frontend Toko Sembako Ariesta.
- * Sprint 1: baru dipakai untuk membuka/menutup menu navigasi di layar mobile.
+ * Script frontend Toko Sembako Ariesta yang dipakai di semua halaman.
+ * Sprint 1: membuka/menutup menu navigasi di layar mobile.
+ * Sprint 2: tombol logout yang memanggil POST /api/logout lewat Fetch API.
  */
 
-document.addEventListener('DOMContentLoaded', function () {
+/* Menu hamburger di layar mobile. */
+function siapkanMenuHamburger() {
   const tombolHamburger = document.getElementById('tombolHamburger');
   const menuUtama = document.getElementById('menuUtama');
 
@@ -30,4 +32,38 @@ document.addEventListener('DOMContentLoaded', function () {
       tombolHamburger.setAttribute('aria-label', 'Buka menu navigasi');
     });
   });
+}
+
+/* Tombol logout di navbar (hanya muncul saat sudah login). */
+function siapkanTombolLogout() {
+  const tombolLogout = document.getElementById('tombolLogout');
+  if (!tombolLogout) return;
+
+  tombolLogout.addEventListener('click', async function () {
+    tombolLogout.disabled = true;
+    tombolLogout.textContent = 'Keluar...';
+
+    try {
+      const response = await fetch('/api/logout', { method: 'POST' });
+      const hasil = await response.json();
+
+      if (hasil.status === 'success') {
+        // setelah sesi dihapus, kembali ke beranda sebagai pengunjung biasa
+        window.location.href = '/';
+        return;
+      }
+
+      window.alert(hasil.message || 'Logout gagal, coba lagi.');
+    } catch (error) {
+      window.alert('Tidak bisa menghubungi server.');
+    }
+
+    tombolLogout.disabled = false;
+    tombolLogout.textContent = 'Logout';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  siapkanMenuHamburger();
+  siapkanTombolLogout();
 });

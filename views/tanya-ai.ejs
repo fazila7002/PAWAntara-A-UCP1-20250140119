@@ -21,26 +21,19 @@
           </div>
         </header>
 
-        <div class="chat-body" id="daftarPesan">
+        <!-- aria-live agar balasan baru ikut dibacakan pembaca layar -->
+        <div class="chat-body" id="daftarPesan" aria-live="polite">
           <div class="bubble bubble-ai">
             <p>
               Halo! Saya asisten Toko Sembako Ariesta. Ada yang bisa saya bantu
-              soal harga, stok, atau pengiriman?
+              soal harga, stok, jam buka, ongkir, atau cara pembayaran?
             </p>
-          </div>
-
-          <div class="bubble bubble-user">
-            <p>Toko buka jam berapa ya?</p>
-          </div>
-
-          <div class="bubble bubble-ai">
-            <p>Toko kami buka setiap hari jam 07.00 - 20.00 WIB.</p>
           </div>
         </div>
 
         <!-- form chat: label terhubung ke input demi aksesibilitas.
-             Logika balasan diproses di backend pada Sprint 2. -->
-        <form class="chat-form" action="/tanya-ai" method="GET">
+             Dikirim lewat Fetch API ke POST /api/chat, bukan form action biasa. -->
+        <form class="chat-form" id="formChat" novalidate>
           <label for="pertanyaan" class="label-visually-hidden">
             Tulis pertanyaan untuk asisten toko
           </label>
@@ -51,22 +44,24 @@
             placeholder="Tulis pertanyaanmu di sini..."
             autocomplete="off"
             aria-describedby="catatan-chat">
-          <button type="submit" class="tombol tombol-utama">Kirim</button>
+          <button type="submit" id="tombolKirim" class="tombol tombol-utama">Kirim</button>
         </form>
 
         <p id="catatan-chat" class="chat-catatan">
-          Catatan: pada Sprint 1 halaman ini baru menampilkan antarmuka chat.
-          Balasan otomatis dari server dikerjakan pada Sprint 2.
+          Balasan diproses di server lewat <code>POST /api/chat</code> memakai
+          logika kata kunci buatan sendiri &mdash; tanpa API AI pihak ketiga.
         </p>
       </article>
 
       <aside class="chat-samping" aria-labelledby="judul-contoh">
         <h2 id="judul-contoh">Contoh Pertanyaan</h2>
-        <ul>
-          <li>Jam buka toko hari Minggu?</li>
-          <li>Ada ongkir ke daerah Kasihan?</li>
-          <li>Bisa bayar pakai transfer atau QRIS?</li>
-          <li>Beras 5 kg stoknya masih ada?</li>
+        <p class="chat-samping-catatan">Klik untuk langsung mengirim.</p>
+        <ul class="daftar-contoh">
+          <li><button type="button" class="contoh-tanya">Toko buka jam berapa?</button></li>
+          <li><button type="button" class="contoh-tanya">Ada ongkir ke daerah Kasihan?</button></li>
+          <li><button type="button" class="contoh-tanya">Bisa bayar pakai QRIS?</button></li>
+          <li><button type="button" class="contoh-tanya">Beras stoknya masih ada?</button></li>
+          <li><button type="button" class="contoh-tanya">Harga minyak goreng berapa?</button></li>
         </ul>
 
         <h2>Butuh cepat?</h2>
@@ -81,4 +76,4 @@
 
 </main>
 
-<%- include('partials/footer') %>
+<%- include('partials/footer', { scriptHalaman: '/js/chat.js' }) %>

@@ -1352,3 +1352,112 @@ body {
     padding: 1.15rem;
   }
 }
+
+/* ==========================================================================
+   TANYA AI - tambahan Sprint 2 (bubble dinamis)
+   ========================================================================== */
+
+.chat-body {
+  max-height: 420px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* balasan produk dikirim beberapa baris, jadi baris barunya dipertahankan */
+.bubble p {
+  white-space: pre-line;
+}
+
+/* titik-titik "sedang mengetik" saat menunggu balasan server */
+.bubble-mengetik {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 0.9rem 1rem;
+}
+
+.bubble-mengetik span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--olive);
+  animation: titik-mengetik 1.2s infinite ease-in-out;
+}
+
+.bubble-mengetik span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.bubble-mengetik span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes titik-mengetik {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30%           { opacity: 1;   transform: translateY(-3px); }
+}
+
+/* input digoyang sedikit kalau disubmit dalam keadaan kosong */
+.input-goyang {
+  animation: goyang 0.35s ease;
+  border-color: #a4552f !important;
+}
+
+@keyframes goyang {
+  0%, 100%  { transform: translateX(0); }
+  25%       { transform: translateX(-5px); }
+  75%       { transform: translateX(5px); }
+}
+
+.chat-catatan code {
+  padding: 0.1rem 0.35rem;
+  border-radius: 5px;
+  background-color: var(--krem);
+  color: var(--coklat);
+}
+
+/* ---------- panel contoh pertanyaan ---------- */
+
+.chat-samping-catatan {
+  margin: -0.35rem 0 0.75rem !important;
+  font-size: 0.8rem !important;
+  color: var(--pasir) !important;
+}
+
+.daftar-contoh {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contoh-tanya {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--gandum);
+  border-radius: 10px;
+  background-color: var(--krem);
+  color: var(--lumut);
+  font-family: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.contoh-tanya:hover,
+.contoh-tanya:focus-visible {
+  background-color: var(--sage);
+  border-color: var(--olive);
+  color: var(--hutan);
+}
+
+/* hormati pengaturan sistem yang meminimalkan animasi */
+@media (prefers-reduced-motion: reduce) {
+  .bubble-mengetik span,
+  .input-goyang {
+    animation: none;
+  }
+}

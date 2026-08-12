@@ -1,6 +1,7 @@
 const express = require('express');
 const store = require('../data/store');
 const users = require('../data/users');
+const chatbot = require('../services/chatbot');
 const { wajibLoginApi } = require('../middleware/auth');
 
 const router = express.Router();
@@ -201,6 +202,40 @@ router.delete('/products/:id', wajibLoginApi, (req, res) => {
     status: 'success',
     message: 'Produk dihapus',
     data: terhapus
+  });
+});
+
+/* ==========================================================================
+   TANYA AI
+   ========================================================================== */
+
+/**
+ * POST /api/chat
+ * Menerima pertanyaan pelanggan dan mengembalikan balasan dummy hasil
+ * logika keyword matching di backend (lihat services/chatbot.js).
+ * Tidak memanggil API AI pihak ketiga mana pun.
+ * Akses: publik.
+ */
+router.post('/chat', (req, res) => {
+  const { question } = req.body || {};
+
+  if (!question || !String(question).trim()) {
+    return res.status(400).json({
+      status: 'error',
+      message: 'Pertanyaan tidak boleh kosong'
+    });
+  }
+
+  const hasil = chatbot.balas(question);
+
+  return res.status(200).json({
+    status: 'success',
+    message: 'Balasan berhasil dibuat',
+    data: {
+      question: String(question).trim(),
+      reply: hasil.reply,
+      topik: hasil.topik
+    }
   });
 });
 

@@ -1,0 +1,155 @@
+<%- include('partials/head', { title: 'Dashboard Admin' }) %>
+<%- include('partials/navbar', { active: 'dashboard' }) %>
+
+<main>
+
+  <section class="section" aria-labelledby="judul-dashboard">
+
+    <header class="dashboard-kepala">
+      <div>
+        <h1 id="judul-dashboard" class="section-judul">Dashboard Produk</h1>
+        <p class="section-subjudul">
+          Halo <strong><%= userLogin.nama %></strong>, di sini stok dan harga
+          bisa diubah sendiri tanpa bantuan programmer.
+        </p>
+      </div>
+      <a href="/produk" class="tombol tombol-garis tombol-kecil" target="_blank" rel="noopener">
+        Lihat halaman publik &rarr;
+      </a>
+    </header>
+
+    <!-- ringkasan angka, diisi JavaScript setelah data diambil dari API -->
+    <div class="statistik-grid">
+      <article class="kartu-statistik">
+        <span class="statistik-label">Jenis Produk</span>
+        <strong class="statistik-angka" id="statJumlah">-</strong>
+      </article>
+      <article class="kartu-statistik">
+        <span class="statistik-label">Total Stok</span>
+        <strong class="statistik-angka" id="statStok">-</strong>
+      </article>
+      <article class="kartu-statistik kartu-statistik-waspada">
+        <span class="statistik-label">Stok Habis</span>
+        <strong class="statistik-angka" id="statHabis">-</strong>
+      </article>
+      <article class="kartu-statistik">
+        <span class="statistik-label">Nilai Persediaan</span>
+        <strong class="statistik-angka" id="statNilai">-</strong>
+      </article>
+    </div>
+
+    <!-- kotak notifikasi hasil operasi CRUD -->
+    <p id="pesanDashboard" class="auth-pesan" role="alert" aria-live="polite" hidden></p>
+
+    <div class="dashboard-grid">
+
+      <!-- ============ FORM TAMBAH / EDIT ============ -->
+      <article class="dashboard-panel" aria-labelledby="judul-form">
+        <h2 id="judul-form" class="panel-judul">Tambah Produk</h2>
+        <p class="panel-catatan" id="catatanForm">
+          Isi data produk baru. Id dibuat otomatis oleh server.
+        </p>
+
+        <form id="formProduk" class="form-produk" novalidate>
+          <!-- diisi id produk saat mode edit, kosong saat mode tambah -->
+          <input type="hidden" id="produkId" name="produkId" value="">
+
+          <div class="form-baris">
+            <label for="nama">Nama produk <span aria-hidden="true">*</span></label>
+            <input type="text" id="nama" name="nama" placeholder="Contoh: Beras Pandan Wangi 5 kg" required>
+          </div>
+
+          <div class="form-kolom-dua">
+            <div class="form-baris">
+              <label for="kategori">Kategori <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="kategori"
+                name="kategori"
+                list="daftarKategoriTersedia"
+                placeholder="Beras, Minyak, ..."
+                required>
+              <datalist id="daftarKategoriTersedia">
+                <% daftarKategori.forEach(function (kategori) { %>
+                  <option value="<%= kategori %>"></option>
+                <% }); %>
+              </datalist>
+            </div>
+
+            <div class="form-baris">
+              <label for="satuan">Satuan</label>
+              <input type="text" id="satuan" name="satuan" placeholder="kg, botol, karung">
+            </div>
+          </div>
+
+          <div class="form-kolom-dua">
+            <div class="form-baris">
+              <label for="harga">Harga (Rp) <span aria-hidden="true">*</span></label>
+              <input type="number" id="harga" name="harga" min="0" step="500" placeholder="17000" required>
+            </div>
+
+            <div class="form-baris">
+              <label for="stok">Stok <span aria-hidden="true">*</span></label>
+              <input type="number" id="stok" name="stok" min="0" step="1" placeholder="24" required>
+            </div>
+          </div>
+
+          <div class="form-baris">
+            <label for="ikon">Ikon (emoji)</label>
+            <input type="text" id="ikon" name="ikon" maxlength="4" placeholder="&#127834;">
+          </div>
+
+          <div class="form-baris">
+            <label for="deskripsi">Deskripsi</label>
+            <textarea id="deskripsi" name="deskripsi" rows="3"
+              placeholder="Keterangan singkat produk untuk halaman detail."></textarea>
+          </div>
+
+          <div class="form-aksi-produk">
+            <button type="submit" id="tombolSimpan" class="tombol tombol-utama">
+              Simpan Produk
+            </button>
+            <button type="button" id="tombolBatal" class="tombol tombol-garis" hidden>
+              Batal Edit
+            </button>
+          </div>
+        </form>
+      </article>
+
+      <!-- ============ TABEL PRODUK ============ -->
+      <article class="dashboard-panel" aria-labelledby="judul-tabel">
+        <h2 id="judul-tabel" class="panel-judul">Daftar Produk</h2>
+        <p class="panel-catatan">
+          Data diambil dari <code>GET /api/products</code> dan diperbarui
+          langsung di halaman ini tanpa reload.
+        </p>
+
+        <div class="tabel-bungkus">
+          <table class="tabel-produk">
+            <caption class="label-visually-hidden">
+              Daftar produk beserta tombol ubah dan hapus
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Produk</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Stok</th>
+                <th scope="col">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="isiTabelProduk">
+              <tr>
+                <td colspan="5" class="tabel-kosong">Memuat data produk...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer', { scriptHalaman: '/js/dashboard.js' }) %>

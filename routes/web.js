@@ -1,6 +1,9 @@
 const express = require('express');
 const store = require('../data/store');
-const { alihkanKalauSudahLogin } = require('../middleware/auth');
+const {
+  alihkanKalauSudahLogin,
+  wajibLoginHalaman
+} = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -56,6 +59,13 @@ router.get('/login', alihkanKalauSudahLogin, (req, res) => {
   // tanpa sesi login, lalu dialihkan ke halaman ini oleh middleware auth
   res.render('login', {
     perluLogin: req.query.alasan === 'wajib-login'
+  });
+});
+
+// GET /dashboard -> panel admin, dijaga middleware auth di sisi server
+router.get('/dashboard', wajibLoginHalaman, (req, res) => {
+  res.render('dashboard', {
+    daftarKategori: store.daftarKategori()
   });
 });
 

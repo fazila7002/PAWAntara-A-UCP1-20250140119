@@ -1,6 +1,9 @@
 /**
  * Data produk dummy Toko Sembako Ariesta.
- * Sprint 1 masih memakai array of object di file terpisah (belum database).
+ *
+ * Sejak Sprint 2 file ini berperan sebagai data awal (seed) saja. Yang dipakai
+ * server saat berjalan adalah salinannya di `data/store.js`, supaya perubahan
+ * lewat dashboard tidak menimpa data awal di file ini.
  */
 
 const products = [

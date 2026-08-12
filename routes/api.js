@@ -1,19 +1,23 @@
 const express = require('express');
-const products = require('../data/products');
+const store = require('../data/store');
 
 const router = express.Router();
 
 /**
  * GET /api/products
- * Endpoint read-only Sprint 1. Mengembalikan seluruh data produk dummy
- * dengan format response JSON { status, message, data } yang konsisten.
- * Endpoint mutasi (POST/PUT/DELETE) baru ditambahkan pada Sprint 2.
+ * Mengembalikan seluruh data produk dengan format response JSON
+ * { status, message, data } yang konsisten. Mendukung filter opsional
+ * ?kategori= dan ?search= yang diproses di server.
+ * Akses: publik (pelanggan hanya melihat, tidak mengubah).
  */
 router.get('/products', (req, res) => {
+  const { kategori, search } = req.query;
+  const data = store.ambilSemua({ kategori, search });
+
   res.status(200).json({
     status: 'success',
     message: 'Data produk berhasil diambil',
-    data: products
+    data
   });
 });
 
